@@ -1,0 +1,2 @@
+[Service]
+ExecStart=/home/core/share/demo/bin/kube-scheduler --master=127.0.0.1:8080

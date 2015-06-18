@@ -1,0 +1,9 @@
+[Service]
+EnvironmentFile=/etc/environment
+ExecStart=/home/core/share/demo/bin/kubelet \
+--address=0.0.0.0 \
+--port=10250 \
+--hostname_override=${COREOS_PRIVATE_IPV4} \
+--api_servers=172.17.8.101:8080 \
+--allow_privileged=true \
+--register-node

@@ -1,0 +1,11 @@
+[Service]
+EnvironmentFile=/etc/environment
+ExecStart=/home/core/share/demo/bin/kube-apiserver \
+--allow_privileged=true \
+--insecure_bind_address=0.0.0.0 \
+--insecure_port=8080 \
+--kubelet_https=false \
+--secure_port=0 \
+--service-cluster-ip-range=10.100.0.0/16 \
+--etcd_servers=http://127.0.0.1:2379 \
+--public_address_override=${COREOS_PUBLIC_IPV4}

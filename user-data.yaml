@@ -1,0 +1,26 @@
+#cloud-config
+
+coreos:
+  etcd2:
+    name: master
+    initial-cluster: master=http://172.17.8.101:2380
+    advertise-client-urls: http://$private_ipv4:2379
+    listen-client-urls: http://0.0.0.0:2379
+    initial-advertise-peer-urls: http://$private_ipv4:2380
+    listen-peer-urls: http://$private_ipv4:2380
+
+  update:
+    reboot-strategy: off
+
+  flannel:
+    interface: $public_ipv4
+    etcd_endpoints: http://172.17.8.101:2379
+
+  units:
+  - name: flanneld.service
+    command: start
+
+write_files:
+- path: /home/core/.bashrc
+  content: |
+    export PATH=${PATH}:/home/core/share/demo/bin
